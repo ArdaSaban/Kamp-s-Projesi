@@ -1,22 +1,32 @@
-// Arama inputunu ve tüm etkinlik kartlarını (<article>) seçiyoruz
+// HTML elemanlarını seçiyoruz
 const searchInput = document.getElementById('searchInput');
 const articles = document.querySelectorAll('article');
+const noResultMsg = document.getElementById('noResultMsg');
 
-// Arama kutusuna her harf yazıldığında tetiklenecek olay
-searchInput.addEventListener('input', function(e) {
-    // Yazılan metni küçük harfe çeviriyoruz (büyük/küçük harf sorununu önlemek için)
-    const term = e.target.value.toLowerCase().trim();
+// Eğer arama kutusu sayfada varsa dinlemeye başla
+if (searchInput) {
+    searchInput.addEventListener('input', function(e) {
+        const term = e.target.value.toLowerCase().trim();
+        let visibleCount = 0;
 
-    // Her bir etkinlik kartını kontrol ediyoruz
-    articles.forEach(article => {
-        // Kartın içindeki tüm metinleri (tarih, başlık, açıklama, yer) küçük harfe çevirip alıyoruz
-        const articleText = article.textContent.toLowerCase();
+        articles.forEach(article => {
+            const articleText = article.textContent.toLowerCase();
+            
+            if (articleText.includes(term)) {
+                article.style.display = ''; // Göster
+                visibleCount++;
+            } else {
+                article.style.display = 'none'; // Gizle
+            }
+        });
 
-        // Eğer aranan kelime bu kartın içinde geçiyorsa göster, geçmiyorsa gizle
-        if (articleText.includes(term)) {
-            article.style.display = ''; // Varsayılan görünümüne döndürür
-        } else {
-            article.style.display = 'none'; // Gizler
+        // Uyarı mesajını göster veya gizle
+        if (noResultMsg) {
+            if (visibleCount === 0) {
+                noResultMsg.style.display = 'block';
+            } else {
+                noResultMsg.style.display = 'none';
+            }
         }
     });
-});
+}

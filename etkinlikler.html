@@ -21,10 +21,15 @@
   <h1>Etkinlik takvimi</h1>
   <p class="intro">İlk Deneyimin için uygun etkinlikler</p>
 
-  <!-- YENİ: Arama Çubuğunu buraya ekledik -->
-  <div style="margin-bottom: 25px;">
-    <input type="text" id="searchInput" placeholder="Etkinlik adı, yer veya açıklama ara..." style="padding: 10px; width: 100%; max-width: 400px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px;">
+<!-- Arama Çubuğu -->
+  <div style="margin-bottom: 30px;">
+    <input type="text" id="searchInput" placeholder="Etkinlik adı, yer veya açıklama ara...">
   </div>
+
+  <!-- Sonuç Bulunamadı Mesajı -->
+  <p id="noResultMsg" style="display: none; color: #d97706; font-weight: bold; margin-bottom: 25px;">
+    Aradığınız kriterlere uygun etkinlik bulunamadı.
+  </p>
 
   <section class="grid" aria-label="Örnek etkinlikler">
     <article>
